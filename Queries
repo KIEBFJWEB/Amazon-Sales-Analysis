@@ -1,0 +1,163 @@
+# 1. Reterive the Total Sales Amount from the Data.  
+SELECT 
+    SUM(sales) Total_sales
+FROM
+    salesanalysis;
+    
+# 2 Count the number of unique customers in the dataset.       
+SELECT 
+    COUNT(DISTINCT customer_id) AS Unique_customer
+FROM
+    salesanalysis; 
+# 3	   Find the total number of orders placed.  
+SELECT 
+    COUNT(order_id)
+FROM
+    salesanalysis; 
+
+# 4	   Show the total sales for each region.  
+SELECT 
+    region, ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY region; 
+
+#5	   Find the sales amount for each product category.
+SELECT 
+    category, SUM(sales) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1; 
+
+# 6	   Show the total sales for each month.  
+SELECT 
+    DATE_FORMAT(order_date, '%y-%m-%d') Month,
+    ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC; 
+# 7	   List the top 5 states with the highest sales.  
+SELECT 
+    State, ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5;
+
+# 8	   Retrieve the top 10 customers based on total sales.  
+SELECT 
+    Customer_name, ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 5; 
+
+# 9	   Show the percentage contribution of each shipping mode to the total sales.  
+SELECT 
+    ship_mode,
+    ROUND(SUM(sales), 0) Total_sales,
+    ROUND((SUM(sales) / (SELECT 
+                    SUM(sales)
+                FROM
+                    salesanalysis) * 100),
+            0) Sales_percentage
+FROM
+    salesanalysis
+GROUP BY 1
+order by 2 desc ; 
+
+# 10	   Calculate the average delivery time for each ship mode.  
+SELECT 
+    ship_mode, ROUND(AVG(DATEDIFF(ship_date, order_date)), 0) AvgDelivery_Time
+FROM
+    salesanalysis
+GROUP BY 1;
+ 
+ # 11  Retrieve total sales for each customer segment.  
+SELECT 
+    segment Customer_segment, ROUND(SUM(sales), 0) Total_Sales
+FROM
+    salesanalysis
+GROUP BY 1; 
+
+# 12	   Show total sales for each product category within each region.  
+SELECT 
+    category, region, ROUND(SUM(sales), 0)
+FROM
+    salesanalysis
+GROUP BY 1 , 2; 
+# 13	  Calculate the yearly growth in sales.  
+SELECT 
+    YEAR(order_date) 'Year', ROUND(SUM(Sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC
+;
+# 14   Find the total sales and count of orders for each city.  
+SELECT 
+    city,
+    ROUND(SUM(sales), 0) Total_sales,
+    COUNT(Order_ID) Total_Order
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# 15	   Identify products with the lowest total sales.  
+SELECT 
+    Sub_Category Product, ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 ASC
+limit 10;
+
+# 16	   Find the number of orders placed by each customer and their total spending. 
+SELECT 
+    Customer_Name,
+    COUNT(Order_ID) Total_Order,
+    ROUND(SUM(sales), 0) Total_spending
+FROM
+    salesanalysis
+GROUP BY 1
+order by 3 desc ; 
+
+# 17	   Determine the days of the week with the highest total sales.  
+SELECT 
+    DAYNAME(order_date) Days, ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# 18	   Show total sales and rank sub-categories based on performance.  
+select Sub_Category, round(sum(sales),0) Total_sales,
+rank() over (order by sum(sales) desc) 'Rank' 
+from salesanalysis  
+group by 1;
+ 
+# 19	   Calculate total sales for each quarter.  
+SELECT 
+    QUARTER(order_date) 'Quarter',
+    ROUND(SUM(sales), 0) Total_sales
+FROM
+    salesanalysis
+GROUP BY 1
+ORDER BY 2 DESC;
+
+#20	   Find the customers who placed orders every year (consistent customers).  
+SELECT 
+    Customer_Name,
+    COUNT(DISTINCT (YEAR(order_date))) Years_Active
+FROM
+    salesanalysis
+GROUP BY 1
+HAVING Years_Active = (SELECT 
+        COUNT(DISTINCT (YEAR(order_date)))
+    FROM
+        salesanalysis); 
+	
