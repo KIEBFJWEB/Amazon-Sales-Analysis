@@ -1,0 +1,37 @@
+MySql 
+
+Basic Questions 
+1	   Retrieve the total sales amount from the dataset.  
+2	   Count the number of unique customers in the dataset.  
+3	   Find the total number of orders placed.  
+4	   Show the total sales for each region.  
+5	   Find the sales amount for each product category.
+Intermediate Questions   
+6	   Show the total sales for each month.  
+7	   List the top 5 states with the highest sales.  
+8	   Retrieve the top 10 customers based on total sales.  
+9	   Show the percentage contribution of each shipping mode to the total sales.  
+10	   Calculate the average delivery time for each ship mode.  
+11	   Retrieve total sales for each customer segment.  
+Advanced Questions 
+12	   Show total sales for each product category within each region.  
+13	   Calculate the yearly growth in sales.  
+14	   Find the total sales and count of orders for each city.  
+15	   Identify products with the lowest total sales.  
+16	   Find the number of orders placed by each customer and their total spending.  
+17	   Determine the days of the week with the highest total sales.  
+18	   Show total sales and rank sub-categories based on performance.  
+19	   Calculate total sales for each quarter.  
+20	   Find the customers who placed orders every year (consistent customers).  
+
+Power Bi 
+1. Total Sales by Region
+2. Top 10 Customers by Sales
+3. Sales by Category and Sub-Category
+4. Monthly Sales Trends
+5. Sales by Ship Mode
+6. State-Wise Sales Analysis
+7. Order Trend by Ship Date
+8. Sales Contribution by City
+9. Sales Comparison by Segments
+10. Sales by Product Name (Top 10 Products)
