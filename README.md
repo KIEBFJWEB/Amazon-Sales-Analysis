@@ -23,7 +23,6 @@ To address these problems, a structured approach is implemented:
 
 This comprehensive approach helps identify growth opportunities, optimize operational processes, and enhance strategic decision-making.
 
----![1698240017320](https://github.com/user-attachments/assets/de7b3a1b-5549-4f1a-b601-13d8d78c449b)
 
  **Objective**  
 The objectives of the project are to:  
